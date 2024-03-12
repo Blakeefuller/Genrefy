@@ -4,18 +4,17 @@ import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Root from './pages/Root'
-import FetchSearch from './pages/FetchSearch'
-import FetchPost from './pages/FetchPost'
-import QuerySearch from './pages/QuerySearch'
-import QueryPost from './pages/QueryPost'
-import RouterOrgRepos, { loader as orgLoader } from './pages/RouterOrgRepos'
-import RouterPost, { action as postAction } from './pages/RouterPost'
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import CreatePlaylist from './pages/CreatePlaylist'
+import ViewPlaylist from './pages/ViewPlaylist'
+import Settings from './pages/Settings'
 
 import './index.css'
 
 const queryClient = new QueryClient()
 
-const router = createBrowserRouter([
+/*const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
@@ -35,6 +34,21 @@ const router = createBrowserRouter([
                 action: postAction
             },
             { index: true, element: <Navigate to="/fetch-search" replace /> }
+        ]
+    }
+])*/
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Root />,
+        children: [
+            { path: "home", element: <Home /> },
+            { path: "profile", element: <Profile /> },
+            { path: "create-playlist", element: <CreatePlaylist /> },
+            { path: "view-playlist", element: <ViewPlaylist /> },
+            { path: "settings", element: <Settings /> },
+            { index: true, element: <Navigate to="/home" replace /> }
         ]
     }
 ])
