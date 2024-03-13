@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import axios from "axios";
 
 import Root from "./pages/Root";
 import Home from "./pages/Home";
@@ -16,53 +17,50 @@ import Settings from "./pages/Settings";
 
 import "./index.css";
 
-
-
 const queryClient = new QueryClient();
 
-/*const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root />,
-        children: [
-            { path: "fetch-search", element: <FetchSearch /> },
-            { path: "fetch-post", element: <FetchPost /> },
-            { path: "query-search", element: <QuerySearch /> },
-            { path: "query-post", element: <QueryPost /> },
-            {
-                path: "org-repos/:org",
-                element: <RouterOrgRepos />,
-                loader: orgLoader
-            },
-            {
-                path: "router-post",
-                element: <RouterPost />,
-                action: postAction
-            },
-            { index: true, element: <Navigate to="/fetch-search" replace /> }
-        ]
-    }
-])*/
+function App() {
+  //used to pass accessToken into any page
+  const [accessToken, setAccessToken] = useState("");
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      { path: "home", element: <Home /> },
-      { path: "profile", element: <Profile /> },
-      { path: "create-playlist", element: <CreatePlaylist /> },
-      { path: "view-playlist", element: <ViewPlaylist /> },
-      { path: "settings", element: <Settings /> },
-      { index: true, element: <Navigate to="/home" replace /> },
-    ],
-  },
-]);
+  useEffect(() => {
+    const fetchAccessToken = async () => {
+      try {
+        const response = await axios.get("/api/spotify-token");
+        setAccessToken(response.data.accessToken);
+      } catch (error) {
+        console.error("Error fetching Spotify access token:", error);
+      }
+    };
+
+    fetchAccessToken();
+  }, []);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        { path: "home", element: <Home /> },
+        { path: "profile", element: <Profile accessToken={accessToken} /> },
+        { path: "create-playlist", element: <CreatePlaylist /> },
+        { path: "view-playlist", element: <ViewPlaylist /> },
+        { path: "settings", element: <Settings /> },
+        { index: true, element: <Navigate to="/home" replace /> },
+      ],
+    },
+  ]);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}/>
+    </QueryClientProvider>
+  );
+}
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <App />
   </React.StrictMode>
 );
