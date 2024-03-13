@@ -1,6 +1,6 @@
 export default function Profile() {
   return (
-    <div>
+    <div className="profile-page">
       <h1>Profile</h1>
       <h2>Playlists</h2>
       <ul>

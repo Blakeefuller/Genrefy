@@ -16,6 +16,8 @@ import Settings from "./pages/Settings";
 
 import "./index.css";
 
+
+
 const queryClient = new QueryClient();
 
 /*const router = createBrowserRouter([

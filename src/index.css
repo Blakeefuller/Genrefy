@@ -1,10 +1,55 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
+    margin: 0;
 }
 
+main {
+  /* margin: 5px; */
+  /* position: relative; */
+}
+/* BACKGROUND FOR PAGES */
+
+.home-page {
+  background-image: url(../../public/images/homepage-background.png);
+  height: 820px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+.profile-page {
+  background-image: url(../../public/images/profile-background.png);
+  height: 820px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+.createplaylist-page {
+  background-image: url(../../public/images/createplaylist-background.png);
+  height: 820px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+.viewplaylist-page {
+  background-image: url(../../public/images/viewplaylist-background.png);
+  height: 820px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+.settings-page {
+  background-image: url(../../public/images/settings-background.png);
+  height: 820px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+
+/* DIV ITEMS */
 input, textarea {
   border: 1px solid #ababab;
   padding: 5px;
@@ -32,11 +77,51 @@ button:hover {
   display: flex;
 }
 
-nav {
+/* NAV ITEMS */
+/* nav {
   margin-right: 32px;
   padding-right: 32px;
+  background-color: black;
 }
 
 nav .active {
   background-color: #f3d8ed;
+} */
+
+.nav-container {
+  background-color: black;
+  margin: none;
+  height: 100px;
+  display: flex;
+  /* position: relative; */
+  font-family: 'Josefin Sans', cursive;
+}
+
+.navItem {
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  text-align: center;
+  margin: 5px;
+}
+
+.navItem:hover {
+  color: #AD3535;
+}
+
+.navTitle {
+  font-size: 50px;
+  padding: 25px;
+  font-weight:900;
+}
+
+.navElements {
+  font-size: 40px;
+  font-weight:700;
+  padding: 30px;
+  padding-left: 60px;
+}
+
+.active {
+  color: #AD3535;
 }
