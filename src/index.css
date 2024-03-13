@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
@@ -15,7 +16,7 @@ main {
 
 .home-page {
   background-image: url(../../public/images/homepage-background.png);
-  height: 820px;
+  height: 690px;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10px;
@@ -124,4 +125,91 @@ nav .active {
 
 .active {
   color: #AD3535;
+}
+
+/* HOME PAGE CSS */
+/* DESIGN HOME */
+.josefin-sans-small-header {
+  font-weight: 500;
+  font-family: 'Josefin Sans', cursive;
+  font-size: 50px;
+}
+
+.josefin-sans-small-text {
+  font-weight: 400;
+  font-family: 'Josefin Sans', cursive;
+  font-size: 40px;
+}
+.josefin-sans-small-text-button {
+  font-weight: 400;
+  font-family: 'Josefin Sans', cursive;
+  font-size: 25px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.shadows-into-font {
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.arrow-graphic {
+  width: 160px;
+  height: 70px;
+  background-image: url(../../images/white-chalk-arrow.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 27.5%;
+  bottom: 7%;
+  transform: rotate(25deg);
+}
+
+.click-here-text {
+  position: absolute;
+  width: auto;
+  margin: 0px;
+  padding: 0px;
+  left: 9%;
+  top: 65%;
+  font-size: 70px;
+  transform: rotate(-8deg);
+}
+
+/* HOME COMPONENTS */
+.home-info-container {
+  position: absolute;
+  /* text-align: center; */
+  width: 1200px;
+  height: 625px;
+  border: 4px solid black;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  left: 10%;
+  top: 21%;
+  padding-left: 30px;
+}
+
+.create-playlist-home-button-container {
+  text-align: center;
+  position: fixed;
+  bottom: 5%;
+  left: 43%;
+  width: 200px;
+  background-color: #F19F7C;
+  padding: 25px;
+  border: 5px solid black;
+  border-radius: 100px;
+}
+
+.create-playlist-home-button {
+  text-decoration: none;
+  color: white;
 }
