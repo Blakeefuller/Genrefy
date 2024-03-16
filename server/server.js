@@ -1,45 +1,49 @@
 import express from "express";
 import axios from "axios";
 import querystring from "querystring";
+import cors from "cors";
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Only allow requests from this origin
+  })
+);
+
 const PORT = process.env.PORT || 3000;
 
-async function getSpotifyAccessToken() {
-  const clientId = "8da8371ea6434a9a9117c62871f38602";
-  const clientSecret = "c10c7e8416e44d1bb3609b852310efff";
+const clientId = "f6bb9ad7d28749cd9a160fb001d4dee1";
+const clientSecret = "e11217c9db6547a69d132505bacdbfbb";
 
+app.get("/api/getToken", async (req, res) => {
+  const code = req.query.code || null;
+  if (!code) {
+    return res.status(400).json({ error: "Code is required" });
+  }
   try {
     const response = await axios.post(
       "https://accounts.spotify.com/api/token",
       querystring.stringify({
-        grant_type: "client_credentials",
+        code: code,
+        redirect_uri: "http://localhost:5173/callback",
+        grant_type: "authorization_code",
       }),
       {
         headers: {
-          Authorization: `Basic ${Buffer.from(
-            clientId + ":" + clientSecret
-          ).toString("base64")}`,
+          Authorization:
+            "Basic " +
+            Buffer.from(`${clientId}:${clientSecret}`).toString("base64"),
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }
     );
 
-    const accessToken = response.data.access_token;
-    return accessToken;
-  } catch (error) {
-    console.error("Failed to retrieve Spotify access token:", error);
-    return null;
-  }
-}
+    console.log("RESPONSE", response.data.access_token);
 
-app.get("/api/spotify-token", async (req, res) => {
-  try {
-    const accessToken = await getSpotifyAccessToken();
-    res.json({ accessToken });
+    res.json({ access_token: response.data.access_token });
   } catch (error) {
-    console.error("Error fetching Spotify access token:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error during token exchange:", error.response.data);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
