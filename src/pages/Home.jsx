@@ -30,13 +30,6 @@ export default function Home() {
     return result;
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setAccessToken(token);
-    }
-  }, []);
-
   return (
     <div className="home-page">
       {/* <h1>Welcome to My App!</h1>
