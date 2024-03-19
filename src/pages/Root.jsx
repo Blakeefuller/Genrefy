@@ -11,7 +11,7 @@ export default function Root() {
                 <div className="navElements">
                     <NavLink className="navItem" to="/profile">Profile</NavLink>
                     <NavLink className="navItem" to="/create-playlist">Create Playlist</NavLink>
-                    <NavLink className="navItem" to="/view-playlist">View Playlist</NavLink>
+                    <NavLink className="navItem" to="/view-playlist/:id" >View Playlist</NavLink>
                     <NavLink className="navItem" to="/settings">Settings</NavLink>
                 </div>
             </div>

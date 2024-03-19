@@ -1,10 +1,14 @@
+import { useParams } from 'react-router-dom'; // or your preferred routing library
+
 export default function ViewPlaylist() {
+  const { id } = useParams();
+
   return (
     <div className="viewplaylist-page">
       <h1>View Playlist</h1>
       <iframe
         style={{ borderRadius: "12px" }}
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd?utm_source=generator&theme=0"
+        src={`https://open.spotify.com/embed/playlist/${id}`}
         width="100%"
         height="600"
         frameBorder="0"
