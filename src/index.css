@@ -30,7 +30,7 @@ main {
 }
 .createplaylist-page {
   background-image: url(../../public/images/createplaylist-background.png);
-  height: 820px;
+  height: 685px;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10px;
@@ -229,4 +229,40 @@ nav .active {
   left: 10%;
   top: 21%;
   padding-left: 30px;
+}
+
+.genre-list {
+  width: 1400px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  left: 7%;
+  padding-top: 40px;
+}
+
+span {
+  font-size: 50px;
+  padding: 50px;
+}
+
+.genre-item {
+  /* text-align: center; */
+  padding: 5px;
+  padding-top: 30px;
+  width: 350px;
+  font-size: 40px;;
+}
+
+
+.genre-checkbox {
+  width: 50px;
+  height: 50px;
+}
+
+.genre-item input:checked{
+  background-color: #247022;
+}
+
+.genre-checkbox:hover {
+  cursor: pointer;
 }
