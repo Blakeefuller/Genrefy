@@ -28,7 +28,7 @@ function App() {
         { path: "home", element: <Home /> },
         { path: "profile", element: <Profile /> },
         { path: "create-playlist", element: <CreatePlaylist /> },
-        { path: "view-playlist", element: <ViewPlaylist /> },
+        { path: "view-playlist/:id", element: <ViewPlaylist />},
         { path: "settings", element: <Settings /> },
         { path: "callback", element: <Callback /> },
         { index: true, element: <Navigate to="/home" replace /> },
