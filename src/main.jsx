@@ -16,6 +16,7 @@ import Settings from "./pages/Settings";
 import Callback from "./pages/Callback";
 
 import "./index.css";
+import { ThemeProvider } from "./themeContext";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,7 @@ function App() {
         { path: "home", element: <Home /> },
         { path: "profile", element: <Profile /> },
         { path: "create-playlist", element: <CreatePlaylist /> },
-        { path: "view-playlist/:id", element: <ViewPlaylist />},
+        { path: "view-playlist/:id", element: <ViewPlaylist /> },
         { path: "settings", element: <Settings /> },
         { path: "callback", element: <Callback /> },
         { index: true, element: <Navigate to="/home" replace /> },
@@ -45,6 +46,8 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );

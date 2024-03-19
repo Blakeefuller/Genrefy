@@ -1,0 +1,76 @@
+label {
+  width: 250px;
+  height: 100px;
+  position: relative;
+  display: block;
+  background: #ebebeb;
+  border-radius: 100px;
+  box-shadow: inset 0px 2.5px 7.5px rgba(0, 0, 0, 0.4),
+    inset 0px -2.5px 7.5px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+label:after {
+  content: "";
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+  border-radius: 90px;
+  box-shadow: 0px 2.5px 5px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+input:checked + label {
+  background: #242424;
+}
+
+input:checked + label:after {
+  left: 245px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+label,
+label:after {
+  transition: 0.3s;
+}
+
+label:active:after {
+  width: 130px;
+}
+
+.nav-container.light {
+  background-color: white;
+}
+
+.nav-container.dark {
+  background-color: #242424;
+}
+
+.nav-container.light .navItem {
+  color: black;
+}
+
+.nav-container.dark .navItem {
+  color: white;
+}
+
+.nav-container .navItem:hover {
+  color: #ad3535;
+}
+
+.nav-container.light .navItem.active {
+  color: #ad3535;
+}
+
+.nav-container.dark .navItem.active {
+  color: #ad3535;
+}
