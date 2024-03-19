@@ -47,7 +47,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <div>
+    <div className="profile-page">
       {/* Render profile data */}
       {profileData && (
         <div>
@@ -58,8 +58,10 @@ export default function Profile() {
         </div>
       )}
   
-    {/* Render playlists */}
-    {playlists.map((playlist) => (
+    {<h1>Your Playlists (Click Title to View)</h1>}
+    
+    {
+    <div className="playlist-items-container">{playlists.map((playlist) => (
       <div key={playlist.id}>
         {playlist.images && playlist.images[0] && (
           <img
@@ -68,11 +70,11 @@ export default function Profile() {
             style={{ width: '150px', height: '150px', objectFit: 'cover' }}
           />
         )}
-        <Link to={`/view-playlist/${playlist.id}`}>
+        <div><Link className="playlist-title" to={`/view-playlist/${playlist.id}`}>
           {playlist.name}
-        </Link>
+        </Link></div>
       </div>
-    ))}
+    ))}</div>}
     </div>
   );
 }

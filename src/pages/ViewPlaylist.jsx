@@ -1,11 +1,18 @@
-import { useParams } from 'react-router-dom'; // or your preferred routing library
+import { useParams } from 'react-router-dom'; 
 
 export default function ViewPlaylist() {
-  const { id } = useParams();
+  let { id } = useParams();
+
+  if (id===':id' || id==='') {
+    return (
+      <div className="viewplaylist-page">
+        <h1>You can only view a playlist by clicking a link to one in your profile page</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="viewplaylist-page">
-      <h1>View Playlist</h1>
       <iframe
         style={{ borderRadius: "12px" }}
         src={`https://open.spotify.com/embed/playlist/${id}`}
