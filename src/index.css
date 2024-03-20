@@ -58,7 +58,7 @@ input, textarea {
   font-size: 18px;
 }
 
-button {
+button, .login-button {
   background-color: #2b7bbe;
   color: #fff;
   border: 2px solid #2b7bbe;
@@ -70,7 +70,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.login-button, button:hover {
   background-color: #71b5ed;
 }
 
@@ -250,19 +250,18 @@ span {
   padding: 5px;
   padding-top: 30px;
   width: 350px;
-  font-size: 40px;;
+  font-size: 40px;
+  display: flex;
 }
 
 
 .genre-checkbox {
-  width: 50px;
-  height: 50px;
-}
-
-.genre-item input:checked{
-  background-color: #247022;
+  width: 70px;
+  height: 70px;
+  background-color: black;
 }
 
 .genre-checkbox:hover {
   cursor: pointer;
+  background-color: #71b5ed;
 }

@@ -37,7 +37,7 @@ export default function Home() {
       {accessToken && <p>Spotify Access Token: {accessToken}</p>} */}
 
       {/* ACTUAL HOME STUFF HERE */}
-      <button onClick={initiateLogin}>Login with Spotify</button>
+      <button className="login-button" onClick={initiateLogin}>Login with Spotify</button>
       <div className="home-info-container">
         <h2 className="josefin-sans-small-header underline">
           What is Genrefy?

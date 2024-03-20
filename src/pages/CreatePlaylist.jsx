@@ -1,42 +1,67 @@
 import { all } from "axios";
+import { addGenre, toggleGenre } from "../genreSlice";
+import { getSelectedGenres } from "../genreSlice";
+import { useDispatch, useSelector } from 'react-redux'
+import styled from '@emotion/styled'
+
+
+const GenreContainer = styled.div`
+    // margin: auto;
+    text-decoration: ${props => props.isChecked && 'line-through'};
+    color: ${props => props.isChecked && 'black'};
+    button {
+        margin: 0;
+    }
+    p {
+        color: ${props => props.isChecked && 'black'};
+        color: black;
+        margin: 0;
+        padding-left: 15px;
+    }
+`
 
 export function GenreItem(props) {
+    const dispatch = useDispatch()
 
-    const { genreName } = props
+    const { genre, checked } = props
 
     return (
         <>
+        <GenreContainer checked={checked}>
         <div className="genre-item">
-            <input className="genre-checkbox" type="checkbox" value={genreName}/>
-            {/* <button className="genre-checkbox">&#10004;</button>{genreName} */}
-            <span className="checkmark">{genreName}</span>
+            <button className="genre-checkbox" onClick={() => {
+                dispatch(toggleGenre(genre))
+                }}>Add</button>
+            <p>{genre}</p>
         </div>
+        </GenreContainer>
         </>
     )
 }
 
 export function CreatePlaylist(allGenresChecked) {
-    console.log(allGenresChecked)
+    // console.log(allGenresChecked)
 }
 
 
 export default function Search() {
+    const dispatch = useDispatch()
 
-    // hard coded genres users can choose from
-    const allGenres = ["pop", "rnb", "dinner", "party", "jazz", "rock", "hiphop", "country", "workout", "latin", "disney", "indie"]
+    const allSliceGenres = useSelector((state) => state.genres)
 
-    const allGenresChecked = document.querySelectorAll('input[type=checkbox]:checked');
-        
     return (
         <div className="createplaylist-page">
             {/* <h1>Create Playlist</h1> */}
             <div className="create-playlist-container">
                 <div className="genre-list">
-                    {allGenres.map((item, index) => 
-                        (<GenreItem key={index} genreName={item} />))}
+                    {allSliceGenres.genres.map((item, index) => 
+                        (<GenreItem key={index} genre={item.genre} checked={item.checked} />))}
                 </div>
 
-                <button onClick={() => {console.log(allGenresChecked)}}>Save Playlist!</button>
+                <button onClick={() => {
+                    const selectedGenres = allSliceGenres.genres.filter((g) => g.checked === true)
+                    console.log(selectedGenres)
+                    }}>Save Playlist!</button>
 {/* 
                 <a
                 className="create-playlist-home-button josefin-sans-small-text-button"
