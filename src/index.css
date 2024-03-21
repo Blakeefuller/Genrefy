@@ -49,7 +49,7 @@ main {
 }
 .createplaylist-page {
   background-image: url(../../public/images/createplaylist-background.png);
-  height: 820px;
+  height: 685px;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10px;
@@ -78,11 +78,11 @@ textarea {
   font-size: 18px;
 }
 
-button {
-  background-color: #2b7bbe;
+button, .login-button {
+  background-color: #f19f7c;
   color: #fff;
-  border: 2px solid #2b7bbe;
-  border-radius: 3px;
+  border: 2px solid #f19f7c;
+  border-radius: 5px;
   font-size: 18px;
   font-weight: 300;
   padding: 5px 10px;
@@ -90,8 +90,8 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #71b5ed;
+.login-button, button:hover {
+  background-color: #f19f7c;
 }
 
 .page-container {
@@ -248,4 +248,53 @@ nav .active {
   left: 10%;
   top: 21%;
   padding-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genre-list {
+  width: 1400px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  left: 7%;
+  padding-top: 40px;
+}
+
+span {
+  font-size: 50px;
+  padding: 50px;
+}
+
+.genre-item {
+  /* text-align: center; */
+  padding: 5px;
+  padding-top: 30px;
+  width: 350px;
+  font-size: 40px;
+  display: flex;
+}
+
+
+.genre-checkbox {
+  width: 70px;
+  height: 70px;
+  background-color: black;
+}
+
+.genre-checkbox:hover {
+  cursor: pointer;
+  background-color: #71b5ed;
+}
+
+.save-playlist-button {
+  text-align: center;
+  position: relative;
+  font-size: 30px;
+  left: 36%;
+  top: 5%;
+  width: 300px;
+  height: 80px;
+  border: solid 2px black;
+  border-radius: 25px;
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 export default function Home() {
   const initiateLogin = () => {
     const state = generateRandomString(16); // Generate a random state value for security
-    const scope = "user-read-private user-read-email"; // Define the scopes your application needs
+    const scope = "user-read-private user-read-email playlist-modify-public playlist-modify-private"; // Define the scopes your application needs
     const clientId = "f6bb9ad7d28749cd9a160fb001d4dee1"; // Your Spotify client ID
     const redirectUri = "http://localhost:5173/callback"; // Make sure this matches your actual callback URI
 
@@ -37,7 +37,7 @@ export default function Home() {
       {accessToken && <p>Spotify Access Token: {accessToken}</p>} */}
 
       {/* ACTUAL HOME STUFF HERE */}
-      <button onClick={initiateLogin}>Login with Spotify</button>
+      <button className="login-button" onClick={initiateLogin}>Login with Spotify</button>
       <div className="home-info-container">
         <h2 className="josefin-sans-small-header underline">
           What is Genrefy?
