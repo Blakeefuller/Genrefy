@@ -3,7 +3,7 @@ import { useTheme } from "../themeContext";
 import "./Settings.css";
 
 export default function Root() {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   return (
     <>

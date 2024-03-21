@@ -26,8 +26,6 @@ export function GenreItem(props) {
     const dispatch = useDispatch()
     const { genre, checked } = props
 
-    let count = 1;
-
     return (
         <>
         <GenreContainer checked={checked}>
@@ -43,83 +41,136 @@ export function GenreItem(props) {
 }
 
 function CreatePlaylist(props) {
+    const allTracks = props
+    console.log(allTracks)
+    // perform playlist creation here
+    const token = localStorage.getItem("accessToken");
+
+    useEffect(() => {
+        // async function createPlaylist(tracksUri){
+        //     const { id: user_id } = await fetchWebApi('v1/me', 'GET')
+          
+        //     const playlist = await fetchWebApi(
+        //       `v1/users/${user_id}/playlists`, 'POST', {
+        //         "name": "My recommendation playlist",
+        //         "description": "Playlist created by the tutorial on developer.spotify.com",
+        //         "public": false
+        //     })
+          
+        //     await fetchWebApi(
+        //       `v1/playlists/${playlist.id}/tracks?uris=${tracksUri.join(',')}`,
+        //       'POST'
+        //     );
+          
+        //     return playlist;
+        //   }
+
+        const grabUserId = async () => {
+            const response = await fetch(`https://api.spotify.com/v1/me`, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            })
+            const data = await response.json();
+            // const userId = data.id
+            console.log(data.id)
+            createNewBlankPlaylist(data)
+        }
+
+        const createNewBlankPlaylist = async (user) => {
+            const response = await fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`, {
+                method: 'POST',
+                body: JSON.stringify({ 
+                    name: `Genrefy Created Playlist for ${user.display_name}`,
+                    description: 'A catered playlist created using CS494 Final project from Team 15',
+                    public: false
+                }),
+                headers: { Authorization: "Bearer " + token },
+                
+            })
+            const data = await response.json();
+            // console.log(data);
+        }
+
+        grabUserId()
+
+    }, []);
+}
+
+
+
+function GrabPlaylistGenreTracks(props) {
     const allGenresChecked = props
     // perform playlist creation here
     const token = localStorage.getItem("accessToken");
     // grab all genres and set into array
     const [genreStringArr, setGenreStringArr] = useState(allGenresChecked.allGenresChecked.map(item => item.genre));
 
-    // testing 
-    const testGenre = allGenresChecked.allGenresChecked[0].genre
-    console.log(allGenresChecked.allGenresChecked[0].genre)
-
 
     const [currPlaylistId, setCurrPlaylistId] = useState("");
     const [randomTracks, setRandomTracks] = useState([]); // array or all track id's grabbed from each genre playlist
 
-    console.log(genreStringArr)
+    // console.log(genreStringArr)
 
     useEffect(() =>  {
+
+        let allRequestsCompleted = false;
+
+
+        const fetchCategory = async (genreAtIndex) => {
+            try {
+                const response = await fetch(`https://api.spotify.com/v1/browse/categories/${genreAtIndex}/playlists`, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                    }
+                });
+                const data = await response.json();
+                const playlistId = data.playlists.items[0].id; // HARD INPUT: First playlist grabbed from found genre
+                setCurrPlaylistId(playlistId);
+    
+                console.log("== playlist id of first playlist grabbed from genres: ", playlistId);
+                
+                // Fetch playlist tracks based on retrieved playlist ID from genre
+                fetchPlaylistTrack(playlistId);
+            } catch (error) {
+                console.error("Error fetching category:", error);
+            }
+        };
+        
+        const fetchPlaylistTrack = async (playlistId) => {
+            try {
+                const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                    }
+                });
+                const data = await response.json();
+        
+                //array holding random tracks from playlist
+                const currRandomTracks = [];
+                const totalTracks = data.total;
+                // hard input 5 random tracks to be added per every genre
+                for (let i = 0; i < 5; i++) {
+                    const randomIndex = Math.floor(Math.random() * totalTracks);
+                    currRandomTracks.push(data.items[randomIndex].track.uri);
+                }
+    
+                // set random tracks from playlist into array of all songs.
+                setRandomTracks(prevRandomTracks => [...prevRandomTracks, ...currRandomTracks]);
+    
+            } catch (error) {
+                console.error("Error fetching playlist tracks:", error);
+            }
+        };
         // run fetching category per however many genres are selected
         for (let i = 0; i < genreStringArr.length; i++) {
             fetchCategory(genreStringArr[i]);
         }
-        // new api call to create playlists based on all generated track ID's
     }, []);
-
-    
-    const fetchCategory = async (genreAtIndex) => {
-        try {
-            const response = await fetch(`https://api.spotify.com/v1/browse/categories/${genreAtIndex}/playlists`, {
-                headers: {
-                    Authorization: "Bearer " + token,
-                }
-            });
-            const data = await response.json();
-            const playlistId = data.playlists.items[0].id; // HARD INPUT: First playlist grabbed from found genre
-            setCurrPlaylistId(playlistId);
-
-            console.log("== playlist id of first playlist grabbed from genres: ", playlistId);
-            
-            // Fetch playlist tracks based on retrieved playlist ID from genre
-            fetchPlaylistTrack(playlistId);
-        } catch (error) {
-            console.error("Error fetching category:", error);
-        }
-    };
-    
-    const fetchPlaylistTrack = async (playlistId) => {
-        try {
-            const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-                headers: {
-                    Authorization: "Bearer " + token,
-                }
-            });
-            const data = await response.json();
-
-            console.log("== playlist tracks amount", data.total);
-            console.log("== playlist sample track uri", data.items[0].track.uri);
-    
-            //array holding random tracks from playlist
-            const currRandomTracks = [];
-            const totalTracks = data.total;
-            // hard input 5 random tracks to be added per every genre
-            for (let i = 0; i < 5; i++) {
-                const randomIndex = Math.floor(Math.random() * totalTracks);
-                currRandomTracks.push(data.items[randomIndex].track.uri);
-            }
-
-            // set random tracks from playlist into array of all songs.
-            setRandomTracks(prevRandomTracks => [...prevRandomTracks, ...currRandomTracks]);
-
-        } catch (error) {
-            console.error("Error fetching playlist tracks:", error);
-        }
-    };
 
     return (
         <>
-        <h1>Created playlist! View your playlist!</h1>
+        {(randomTracks.length >= genreStringArr.length * 5) && <CreatePlaylist randomTracks={randomTracks}/>}
         </>
     )
 
@@ -147,7 +198,7 @@ export default function Search() {
                     setSelectedGenres(currSelectedGenres)
                     }}>Save Playlist!</button>
 
-                {selectedGenres && <CreatePlaylist allGenresChecked={selectedGenres}/>}
+                {selectedGenres && <GrabPlaylistGenreTracks allGenresChecked={selectedGenres}/>}
 {/* 
                 <a
                 className="create-playlist-home-button josefin-sans-small-text-button"
