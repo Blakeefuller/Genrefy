@@ -229,6 +229,8 @@ nav .active {
   left: 10%;
   top: 21%;
   padding-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .genre-list {
@@ -264,4 +266,16 @@ span {
 .genre-checkbox:hover {
   cursor: pointer;
   background-color: #71b5ed;
+}
+
+.save-playlist-button {
+  text-align: center;
+  position: relative;
+  font-size: 30px;
+  left: 36%;
+  top: 5%;
+  width: 300px;
+  height: 80px;
+  border: solid 2px black;
+  border-radius: 25px;
 }
