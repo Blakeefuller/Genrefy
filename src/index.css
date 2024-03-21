@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 300;
-    margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  margin: 0;
 }
 
 main {
@@ -14,6 +14,24 @@ main {
 }
 /* BACKGROUND FOR PAGES */
 
+
+.playlist-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: fit-content;
+}
+.playlist-items-container > div {
+  max-width: min-content;
+  margin: 10px;
+}
+.playlist-title {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+
+  
+}
 .home-page {
   background-image: url(../../public/images/homepage-background.png);
   height: 685px;
@@ -23,10 +41,11 @@ main {
 }
 .profile-page {
   background-image: url(../../public/images/profile-background.png);
-  height: 820px;
+  height: fit-content;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10px;
+  color: white;
 }
 .createplaylist-page {
   background-image: url(../../public/images/createplaylist-background.png);
@@ -51,7 +70,8 @@ main {
 }
 
 /* DIV ITEMS */
-input, textarea {
+input,
+textarea {
   border: 1px solid #ababab;
   padding: 5px;
   margin: 5px;
@@ -95,7 +115,7 @@ nav .active {
   height: 100px;
   display: flex;
   /* position: relative; */
-  font-family: 'Josefin Sans', cursive;
+  font-family: "Josefin Sans", cursive;
 }
 
 .navItem {
@@ -107,42 +127,42 @@ nav .active {
 }
 
 .navItem:hover {
-  color: #AD3535;
+  color: #ad3535;
 }
 
 .navTitle {
   font-size: 50px;
   padding: 25px;
-  font-weight:900;
+  font-weight: 900;
 }
 
 .navElements {
   font-size: 40px;
-  font-weight:700;
+  font-weight: 700;
   padding: 30px;
   padding-left: 60px;
 }
 
 .active {
-  color: #AD3535;
+  color: #ad3535;
 }
 
 /* HOME PAGE CSS */
 /* DESIGN HOME */
 .josefin-sans-small-header {
   font-weight: 500;
-  font-family: 'Josefin Sans', cursive;
+  font-family: "Josefin Sans", cursive;
   font-size: 50px;
 }
 
 .josefin-sans-small-text {
   font-weight: 400;
-  font-family: 'Josefin Sans', cursive;
+  font-family: "Josefin Sans", cursive;
   font-size: 40px;
 }
 .josefin-sans-small-text-button {
   font-weight: 400;
-  font-family: 'Josefin Sans', cursive;
+  font-family: "Josefin Sans", cursive;
   font-size: 25px;
 }
 
@@ -204,7 +224,7 @@ nav .active {
   left: 40%;
   margin: auto;
   width: 300px;
-  background-color: #F19F7C;
+  background-color: #f19f7c;
   padding: 25px;
   border: 5px solid black;
   border-radius: 100px;
@@ -214,7 +234,6 @@ nav .active {
   text-decoration: none;
   color: white;
 }
-
 
 /* CREATE PLAYLIST */
 .create-playlist-container {
