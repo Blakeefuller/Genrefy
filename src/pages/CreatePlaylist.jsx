@@ -74,22 +74,33 @@ function CreatePlaylist(props) {
             const data = await response.json();
             // const userId = data.id
             console.log(data.id)
-            createNewBlankPlaylist(data)
+            createAllTracksPlaylist(data, allTracks.randomTracks);
         }
 
-        const createNewBlankPlaylist = async (user) => {
+        const createAllTracksPlaylist = async (user, tracks) => {
             const response = await fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`, {
                 method: 'POST',
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     name: `Genrefy Created Playlist for ${user.display_name}`,
-                    description: 'A catered playlist created using CS494 Final project from Team 15',
-                    public: false
+                    description: 'A catered playlist created using Genrefy.',
+                    public: true
                 }),
                 headers: { Authorization: "Bearer " + token },
-                
             })
             const data = await response.json();
-            // console.log(data);
+            console.log(data);
+            const playlistId = data.id;
+            console.log(playlistId);
+            addTracksToPlaylist(user, playlistId, tracks);
+        }
+
+        const addTracksToPlaylist = async (user, playlistId, tracks) => {
+            const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${tracks.join(',')}`, {
+                method: 'POST',
+                headers: { Authorization: "Bearer " + token },
+            })
+            const data = await response.json();
+            console.log(data);
         }
 
         grabUserId()
