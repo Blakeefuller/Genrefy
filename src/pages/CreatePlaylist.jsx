@@ -6,14 +6,28 @@ import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 
 const GenreContainer = styled.div`
-  color: ${(props) => (props.isChecked ? "grey" : "black")};
   .genre-item {
+    display: flex;
+    align-items: center;
+
     button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 30px;
+      margin-right: 10px;
+      padding: 5px 10px;
       background-color: ${(props) => (props.isChecked ? "#ccc" : "white")};
-      color: ${(props) => (props.isChecked ? "black" : "blue")};
+      color: ${(props) => (props.isChecked ? "white" : "blue")};
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
     }
+
     p {
-      color: ${(props) => (props.isChecked ? "red" : "black")};
+      margin: 0;
+      padding-left: 15px;
     }
   }
 `;
