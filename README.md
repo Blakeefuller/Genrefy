@@ -1,1 +1,1 @@
-File project for Cs 494 by Blake Fuller, Jason Ho, John Nguyen
+React App powered by Spotify API by Blake Fuller, Jason Ho, and John Nguyen
