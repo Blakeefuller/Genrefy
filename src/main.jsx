@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     // hard coded genres users can choose from
-    const allGenres = ["pop", "rnb", "dinner", "party", "jazz", "rock", "hiphop", "country", "workout", "latin", "disney", "indie"]
+    const allGenres = ["pop", "rnb", "jazz", "rock", "hiphop", "country", "workout", "latin", "indie"]
     // add All Genres to our slice
     allGenres.forEach((item) =>  ( dispatch(addGenre(item))  ) )
     // dispatch(addGenre("joemama"))
