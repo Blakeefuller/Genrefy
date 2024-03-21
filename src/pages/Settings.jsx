@@ -1,7 +1,7 @@
 import { useTheme } from "../themeContext";
 
 export default function Settings() {
-  const toggleTheme = useTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <div className="settings-page">
